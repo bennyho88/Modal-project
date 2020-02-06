@@ -3,15 +3,52 @@
   // global variables
 
   const storeItems = document.querySelectorAll('.store-item');
-  const storeImg = document.querySelectorAll('.store-img');
+  const storeImages = document.querySelectorAll('.store-img');
 
 
   // modal
 
+  const modalContainer = document.querySelector('.lightbox-container');
   const modalItem = document.querySelector('.lightbox-item');
   const closeItem = document.querySelector('.lightbox-close');
   const btnRight = document.querySelector('.btnRight');
   const btnLeft = document.querySelector('.btnLeft');
+
+  
+  //open modal --- klik op storeitem of storeimg?
+
+  /*
+  storeImages.forEach(image => {
+    image.addEventListener('click', function() {
+      
+      modalContainer.style.display = 'block';
+    })
+  })
+  */
+
+  function openModal() {
+
+    storeItems.forEach(item => {
+      item.addEventListener('click', function() {
+        modalContainer.style.display = 'block';
+      })
+    })
+
+  }
+ 
+  openModal();
+
+
+ 
+
+
+  // left button
+
+  // right button
+
+// close modal
+
+
 
 
 })();
