@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
   // global variables
 
@@ -11,10 +11,27 @@
   const modalContainer = document.querySelector('.lightbox-container');
   const modalItem = document.querySelector('.lightbox-item');
   const closeItem = document.querySelector('.lightbox-close');
-  const btnRight = document.querySelector('.btnRight');
-  const btnLeft = document.querySelector('.btnLeft');
+  const modalButtons = document.querySelectorAll('.lightbox-control');
 
-  
+  const pictures = [
+    'cake-1',
+    'cake-2',
+    'cake-3',
+    'cupcake-1',
+    'cupcake-2',
+    'cupcake-3',
+    'doughnut-1',
+    'doughnut-2',
+    'doughnut-3',
+    'sweets-1',
+    'sweets-2',
+    'sweets-3'
+  ]
+
+  let counter = 0;
+
+
+
   //open modal --- klik op storeitem of storeimg?
 
   /*
@@ -29,33 +46,60 @@
   function openModal() {
 
     storeItems.forEach(item => {
-      item.addEventListener('click', function() {
+      item.addEventListener('click', function () {
         modalContainer.style.display = 'block';
+
+        //show the image that has been clicked and start from it
+
+      modalItem.style.backgroundImage = `url(./img/${pictures[9]}.jpeg)`
       })
     })
 
   }
- 
+
   openModal();
-/*
-  // left button
 
-  btnLeft.addEventListener('click', function() {
+  // buttons
 
+  modalButtons.forEach(button => {
+
+    button.addEventListener('click', function () {
+
+      
+    
+      // left button
+      if (button.classList.contains('btnLeft')) {
+        console.log('left');
+        counter--;
+        if(counter < 0) {
+          counter = pictures.length -1;
+        }
+
+        modalItem.style.backgroundImage = `url(./img/${pictures[counter]}.jpeg)`
+
+      }
+
+      // right button
+
+      if (button.classList.contains('btnRight')) {
+        console.log('right');
+        counter++;
+        if (counter > pictures.length -1) {
+          counter = 0;
+        }
+
+        modalItem.style.backgroundImage = `url(./img/${pictures[counter]}.jpeg)`
+      }
+
+    })
   })
 
-  // right button
+  // close modal
 
-  btnRight.addEventListener('click', function() {
-
+  closeItem.addEventListener('click', function () {
+    console.log('close')
+    modalContainer.style.display = 'none';
   })
-*/
-// close modal
-
-closeItem.addEventListener('click', function() {
-  console.log('close')
-  modalContainer.style.display = 'none';
-})
 
 
 
@@ -99,14 +143,14 @@ closeItem.addEventListener('click', function() {
 (function(){
   //Grab stores items from the DOM
   let storeItems = document.querySelectorAll('.store-item');
-  //grab lightbox container 
+  //grab lightbox container
   let lightBox = document.querySelector('.lightbox-container');
    //grab the div with the lightbox item
   let lightBoxItem = document.querySelector('.lightbox-item');
   //grab all the images from the store items
   let images = document.querySelectorAll('.store-img');
-  
-  
+
+
   // set up an array for the items
   let imageList = [];
   //set up a counter to run through the list of images
@@ -116,10 +160,10 @@ closeItem.addEventListener('click', function() {
     //push each imageto the array of images
     imageList.push(image.src);
   })
-  
+
   //Add an a click event listener to each store item
   storeItems.forEach(function(item) {
-    //On click, allow the model container to show 
+    //On click, allow the model container to show
     //Change css class from display none to display block
     item.addEventListener('click', function(e){
     //grab the image of the item that was clicked
@@ -131,8 +175,8 @@ closeItem.addEventListener('click', function() {
     //get the array index number for the image that was selected
     imageCounter = imageList.indexOf(image);
     });
-  }); 
-  
+  });
+
   //wire up the left and right buttons
   //select left button from the DOM
   let btnLeft = document.querySelector('.btnLeft');
@@ -152,14 +196,14 @@ closeItem.addEventListener('click', function() {
     }
     lightBoxItem.style.backgroundImage = `url(${imageList[imageCounter]})`;
   });
-  
+
   //wire up the modal's close button
     let lightBoxClose = document.querySelector('.lightbox-close');
     lightBoxClose.addEventListener('click', function(){
     lightBox.classList.remove('show');
     });
-  
-  
+
+
 })();
 */
 
@@ -170,6 +214,6 @@ https://stackoverflow.com/questions/55667793/uncaught-typeerror-input-addeventli
 2. Tried to use style.classList and then .show instead of just the string show. 'style not needed'
 3. How to access the individual CSS properties (without simply adding a class)
 4. I struggled with change the background. I thought I would be able to simply use element.style.background = 'image' but I realized I needed to use 'url(img);
-5. Had a bug in my code where I misspelled background. backgound vs. background 
+5. Had a bug in my code where I misspelled background. backgound vs. background
 
 */
