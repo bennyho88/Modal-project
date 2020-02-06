@@ -37,16 +37,25 @@
   }
  
   openModal();
-
-
- 
-
-
+/*
   // left button
+
+  btnLeft.addEventListener('click', function() {
+
+  })
 
   // right button
 
+  btnRight.addEventListener('click', function() {
+
+  })
+*/
 // close modal
+
+closeItem.addEventListener('click', function() {
+  console.log('close')
+  modalContainer.style.display = 'none';
+})
 
 
 
